@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h2>提交邮箱信息</h2>
+    <form action="{% url 'signup' %}">
+        <div class="mb-3">
+            <label for="email" class="form-label">
+                邮箱地址:
+            </label>
+            <input type="email" class="form-control" name="email"/>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            注册
+        </button>
+    </form>
+</div>
+{% endblock content %}

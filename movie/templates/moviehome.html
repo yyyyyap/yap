@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <form action="">
+        <div class="mb-3">
+            <label class="form-label">搜索电影:</label>
+            <input type="text" class="form-control" name="searchMovie">
+        </div>
+        <button type="submit" class="btn btn-primary">搜索</button>
+    </form>
+    搜索  {{ searchTerm }}
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for movie in movies %}
+        <div v-for="movie in movies" class="col">
+            <div class="card">
+                <img class="card-img-top" src="{{ movie.image.url }}"/>
+                <div class="card-body">
+                    <a href="{% url 'moviedetail' movie.id %}">
+                    <h5 class="card-title fw-bold">{{ movie.title }}</h5>
+                     </a>
+                    <p class="card-text">{{ movie.description|truncatechars:40}}</p>
+                    {% if movie.url %}
+                    <a href="{{ movie.url }}" class="btn btn-primary">电影资源链接</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="d-flex justify-content-center align-items-center">
+    {% include "pagination.html" with page=movies %}
+</div>
+{% endblock content %}
